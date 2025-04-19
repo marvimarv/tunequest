@@ -73,7 +73,7 @@ export default function GameController({token}: Props) {
             {showScanner && (
                 <>
                     <h1 className="fixed top-0 left-1/2 transform -translate-x-1/2 z-10 text-3xl font-bold tracking-tight text-white xs:text-4xl sm:text-5xl lg:text-6xl mt-8 uppercase text-center drop-shadow-lg">
-                        Scan QR-Code
+                        QR Code scannen
                     </h1>
 
                     <QRCodeScanner handleSpotifyTrackId={handleQrResult}/>
@@ -83,7 +83,7 @@ export default function GameController({token}: Props) {
                             href="/"
                             className="text-center w-full rounded-md bg-white bg-opacity-70 px-3.5 py-2.5 text-sm font-bold text-slate-900 shadow-sm ring-1 ring-inset ring-gray-200 hover:bg-opacity-10"
                         >
-                            Go back
+                            Zurück
                         </Link>
                     </div>
                 </>

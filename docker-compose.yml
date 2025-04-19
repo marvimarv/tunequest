@@ -1,0 +1,10 @@
+services:
+  tunequest:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tunequest
+    ports:
+      - "3003:3000"
+    env_file:
+      - .env

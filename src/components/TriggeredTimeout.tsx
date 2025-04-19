@@ -6,10 +6,10 @@ type Status = 'disabled' | 'pending' | 'triggered'
 
 const getButtonText = (status: Status, seconds: number): string => {
     switch (status) {
-        case "disabled": return `PRESS TO STOP AT ${seconds} SECONDS`;
-        case "pending": return `STOPPING AT ${seconds} SECONDS`;
-        case "triggered": return "TIMEOUT REACHED";
-        default: return "error getting button text";
+        case "disabled": return `DRÜCKEN, UM BEI ${seconds} SEKUNDEN ZU STOPPEN`;
+        case "pending": return `STOPPEN BEI ${seconds} SEKUNDEN`;
+        case "triggered": return "ZEITLIMIT ERREICHT";
+        default: return "Fehler beim Abrufen des Button-Texts";
     }
 };
 
@@ -70,10 +70,10 @@ const TriggeredTimeout: React.FC<TriggeredTimeoutProps> = ({ onTimeout, enabledB
     return (
         <div className="mt-16">
             <div className="flex justify-between">
-                <div>Elapsed time: {elapsedSeconds} seconds</div>
+                <div>Verstrichene Zeit: {elapsedSeconds} Sekunden</div>
                 <div className="text-right text-blue-600 underline hover:no-underline"
                      onClick={() => setShowHelp(true)}>
-                     What is this?
+                     Was ist das?
                 </div>
             </div>
             <button
@@ -105,7 +105,7 @@ const TriggeredTimeout: React.FC<TriggeredTimeoutProps> = ({ onTimeout, enabledB
                     onChange={(event) => {setEnabledByDefault(event.target.checked)}}
                 />
                 <label htmlFor="enabledByDefault" className="ml-2">
-                    Timeout enabled by default
+                    Timeout standardmäßig aktiviert
                 </label>
             </div>
             <div className="flex items-center mt-4">
@@ -118,7 +118,7 @@ const TriggeredTimeout: React.FC<TriggeredTimeoutProps> = ({ onTimeout, enabledB
                     onChange={(event) => {setSoundEnabled(event.target.checked)}}
                 />
                 <label htmlFor="soundEnabled" className="ml-2">
-                    Play sound when timer expires
+                    Ton abspielen, wenn der Timer abläuft
                 </label>
             </div>
             {showHelp && (
@@ -130,38 +130,38 @@ const TriggeredTimeout: React.FC<TriggeredTimeoutProps> = ({ onTimeout, enabledB
                     className="bg-white p-4 rounded shadow-lg w-11/12 sm:w-3/4 md:w-1/2 lg:w-1/3 max-h-full overflow-y-auto"
                     onClick={(e) => e.stopPropagation()}
                 >
-                    <h2 className="text-lg font-bold">About Triggered Timeouts</h2>
+                    <h2 className="text-lg font-bold">Über automatische Timeouts</h2>
                     <p>
-                        Do your friends keep waiting for the chorus to determine the song title, even if it takes forever?<br />
-                        Do your <span className="font-bold"><span className="text-indigo-500">Tune</span>Quest tokens</span> pile up because you are just too good at <span className="font-bold"><span className="text-indigo-500">Tune</span>Quest</span>?<br />
-                        With triggered timeouts, you can automatically stop playback after a set time!
-                        Clicking the button will start or stop the timer, depending on its current state.<br />
-                        This enables fun variants of the classic <span className="font-bold"><span className="text-indigo-500">Tune</span>Quest</span> experience:
+                        Warten deine Freunde immer bis zum Refrain, um den Songtitel zu bestimmen, selbst wenn es ewig dauert?<br />
+                        Stapeln sich deine <span className="font-bold"><span className="text-indigo-500">Tune</span>Quest Tokens</span>, weil du einfach zu gut bist bei <span className="font-bold"><span className="text-indigo-500">Tune</span>Quest</span>?<br />
+                        Mit automatischen Timeouts kannst du die Wiedergabe nach einer bestimmten Zeit automatisch stoppen!
+                        Ein Klick auf den Button startet oder stoppt den Timer, je nach aktuellem Zustand.<br />
+                        Dies ermöglicht lustige Varianten des klassischen <span className="font-bold"><span className="text-indigo-500">Tune</span>Quest</span>-Erlebnisses:
                     </p>
                     <h3 className="mt-2">
-                        <span className="font-bold">Variant 1:</span> &quot;The 30 second rule&quot;
+                        <span className="font-bold">Variante 1:</span> &quot;Die 30-Sekunden-Regel&quot;
                     </h3>
                     <p>
-                        Enable the &quot;Timeout enabled by default&quot; option and set the timer to a value as you see fit. The default is 30 seconds.
-                        Playback will stop after the timer expires. Usually, panning is not allowed in this variant.
+                        Aktiviere die Option &quot;Timeout standardmäßig aktiviert&quot; und setze den Timer auf einen Wert, der dir gefällt. Der Standardwert sind 30 Sekunden.
+                        Die Wiedergabe wird gestoppt, nachdem der Timer abgelaufen ist. Normalerweise ist Panning in dieser Variante nicht erlaubt.
                     </p>
                     <h3 className="mt-2">
-                        <span className="font-bold">Variant 2:</span> Pay to continue
+                        <span className="font-bold">Variante 2:</span> Weiterhören gegen Einsatz
                     </h3>
                     <p>
-                        Same as Variant 1, but the active team is allowed to pay one <span className="font-bold"><span className="text-indigo-500">Tune</span>Quest token</span> to switch the timer off so they can continue listening.
+                        Gleich wie Variante 1, aber das aktive Team darf einen <span className="font-bold"><span className="text-indigo-500">Tune</span>Quest Token</span> einsetzen, um den Timer auszuschalten, damit sie weiter hören können.
                     </p>
                     <h3 className="mt-2">
-                        <span className="font-bold">Variant 3:</span> Pay to enforce
+                        <span className="font-bold">Variante 3:</span> Erzwingen gegen Einsatz
                     </h3>
                     <p>
-                        <span className="font-bold">Disable</span> the &quot;Timeout enabled by default&quot; option and set the timer to a value as you see fit. The <span className="font-bold">enemy team</span> can spend a <span className="font-bold"><span className="text-indigo-500">Tune</span>Quest token</span> to switch the timer <span className="font-bold">on</span> and thus force playback for the active team after the indicated time. Of course, the amount of <span className="font-bold"><span className="text-indigo-500">Tune</span>Quest tokens</span> that have to be spent can be set to two or more if you feel like it.
+                        <span className="font-bold">Deaktiviere</span> die Option &quot;Timeout standardmäßig aktiviert&quot; und setze den Timer auf einen Wert, der dir gefällt. Das <span className="font-bold">gegnerische Team</span> kann einen <span className="font-bold"><span className="text-indigo-500">Tune</span>Quest Token</span> ausgeben, um den Timer <span className="font-bold">einzuschalten</span> und somit die Wiedergabe für das aktive Team nach der angegebenen Zeit zu erzwingen. Natürlich kann die Anzahl der <span className="font-bold"><span className="text-indigo-500">Tune</span>Quest Tokens</span>, die ausgegeben werden müssen, auf zwei oder mehr festgelegt werden, wenn du das möchtest.
                     </p>
                     <button
                         className="mt-4 bg-blue-500 text-white py-2 px-4 rounded"
                         onClick={() => setShowHelp(false)}
                     >
-                        Close
+                        Schließen
                     </button>
                 </div>
             </div>)}
